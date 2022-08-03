@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Histo;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class HistoController extends Controller
 {
@@ -20,6 +20,16 @@ class HistoController extends Controller
         return response()
             ->json(compact('histo'))
             ->header('Content-Type', 'application/json');
+    }
+
+    public function get2Lasts()
+    {
+        $histo = Histo::orderBy('id','DESC')->limit(2)->get();
+
+        return response()
+            ->json(compact('histo'))
+            ->header('Content-Type', 'application/json');
+
     }
 
 }
