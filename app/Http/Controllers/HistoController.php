@@ -17,18 +17,14 @@ class HistoController extends Controller
     {
         $histo = Histo::all();
 
-        return response()
-            ->json(compact('histo'))
-            ->header('Content-Type', 'application/json');
+        return compact('histo');
     }
 
     public function get2Lasts()
     {
         $histo = Histo::orderBy('id','DESC')->limit(2)->get();
 
-        return response()
-            ->json(compact('histo'))
-            ->header('Content-Type', 'application/json');
+        return compact('histo');
 
     }
 
