@@ -62,6 +62,15 @@ app.get('/getPrixFrance', function(req, res){
 
 });
 
+app.get('/getCommunes', function(req, res){
+    let query = `SELECT UPPER("Ville") as ville, "Code_postal" as code_postal FROM "Communes" ORDER BY UPPER("Ville")`;
+
+    pool.query(query, function(error, results){
+        if(error) console.log(error);
+        res.send(results.rows);
+    })
+})
+
 
 var server = app.listen(8081, function(){
     var host = server.address().address
